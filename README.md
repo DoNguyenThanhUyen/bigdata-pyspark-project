@@ -1,180 +1,57 @@
-# BIGDATA_NHOM 5
+# 🛒 Hệ Thống Phân Tích Hành Vi Khách Hàng & Khuyến Nghị Thông Minh
 
-## 1. Giới thiệu
-
-Dự án xây dựng hệ thống phân tích dữ liệu và Machine Learning trên bộ dữ liệu **Olist E-commerce** bằng PySpark.
-
-Hệ thống bao gồm:
-
-* Xử lý dữ liệu lớn (Big Data)
-* Xây dựng pipeline bằng Spark ML
-* Áp dụng nhiều nhóm thuật toán Machine Learning
-* Hướng tới tích hợp Web UI bằng Streamlit
+Hệ thống phân tích dữ liệu lớn (**End-to-End**) sử dụng **Apache Spark MLlib** để xử lý, phân loại, phân cụm khách hàng và đưa ra các khuyến nghị sản phẩm dựa trên tập dữ liệu Olist (~100.000 đơn hàng).
 
 ---
 
-## 2. Mục tiêu
+## 👥 Thành viên thực hiện (Nhóm 05)
 
-* Thực hiện EDA trên 9 bảng dữ liệu Olist
-* Xây dựng master DataFrame
-* Thiết kế pipeline xử lý dữ liệu (Spark ML)
-* Triển khai các nhóm mô hình:
+| MSSV | Họ và Tên | Vai trò chính |
+| :--- | :--- | :--- |
+| **23126046** | **Nguyễn Ngọc Phương Trinh** | **Nhóm trưởng - Data Engineer** |
+| 23126014 | Lê Nguyễn Thanh Huyền | Recommendation & Evaluation |
+| 23126024 | Nguyễn Thị Yến Linh | Machine Learning Engineer |
+| 23126041 | Nguyễn Ngọc Minh Trang | Frontend & Visualization |
+| 23126053 | Đỗ Nguyễn Thanh Uyên | Documentation & Integration |
 
-  * Clustering
-  * Classification
-  * Regression
-  * Recommendation (ALS)
-  * Association Rules (FP-Growth)
-* Đánh giá mô hình bằng nhiều metrics
-* Tích hợp hệ thống với Streamlit
+**Giảng viên hướng dẫn:** Thầy Hồ Nhựt Minh
 
 ---
 
-## 3. Thành viên & phân công
-
-### Nguyễn Ngọc Phương Trinh – Data Engineer
-
-* Khảo sát & EDA dataset Olist
-* Join 9 bảng → master DataFrame
-* Xử lý missing values & Feature Engineering (RFM)
-* Xây dựng Spark ML Pipeline
-  (Indexer, OneHotEncoder, VectorAssembler, StandardScaler, ChiSqSelector)
-* Clustering:
-
-  * K-Means
-  * Bisecting K-Means
-  * Gaussian Mixture Model (GMM)
-
-### Nguyễn Thị Yến Linh – Machine Learning Engineer
-
-* Classification:
-
-  * Logistic Regression
-  * Random Forest
-  * Naive Bayes
-  * LinearSVC
-  * GBTClassifier
-* Regression:
-
-  * Linear Regression
-  * Decision Tree
-  * Random Forest Regressor
-* Hyperparameter tuning (CrossValidator)
-* Đánh giá metrics:
-
-  * Accuracy, F1-score
-  * RMSE, MAE, R²
-
-### Lê Nguyễn Thanh Huyền – Recommendation & Evaluation
-
-* ALS Recommendation:
-
-  * Xây dựng implicit feedback matrix
-  * Train model
-  * Evaluate RMSE (~1.9358)
-* FP-Growth:
-
-  * Frequent itemsets
-  * Association rules
-* Tổng hợp metrics & RankingMetrics
-
-
-### Nguyễn Ngọc Minh Trang – Frontend & Visualization
-
-* Thiết kế giao diện Streamlit
-* Xây dựng dashboard với Plotly
-* Các module:
-
-  * Dashboard tổng quan
-  * Phân khúc khách hàng
-  * Gợi ý sản phẩm
-  * Xu hướng mua sắm
-
-
-### Đỗ Nguyễn Thanh Uyên – Documentation & Integration
-
-* Tích hợp Spark model vào Streamlit (save/load pipeline)
-* Quản lý GitHub repository & README
-* Format báo cáo Word/PDF
-* Xây dựng Gantt chart & theo dõi tiến độ
-* Viết báo cáo:
-
-  * Executive Summary
-  * II, III, VII, VIII, IX, X, XI
-
-
-## 4. Kiến trúc hệ thống
-
-Pipeline tổng thể:
-
-Data → Preprocessing → Feature Engineering → Model → Evaluation → Streamlit UI
+## 🚀 Tổng quan đồ án
+Đồ án tập trung vào việc giải quyết bài toán Big Data trong thương mại điện tử tại thị trường Brazil, bao gồm:
+* **Tiền xử lý & Feature Engineering:** Xây dựng Spark ML Pipeline, phân tích RFM, TF-IDF.
+* **Mô hình hóa:** Triển khai 13 thuật toán thuộc 5 nhóm bài toán Machine Learning.
+* **Ứng dụng:** Dashboard trực quan hóa và dự đoán trực tuyến trên nền tảng Streamlit.
 
 ---
 
-## 5. Tiến độ dự án
-
-* Tuần 1: **75%**
-* Tuần 2 (tích luỹ): **~62%**
-
-### Nhận xét:
-
-* Phần Data & Pipeline gần hoàn thiện
-* Các mô hình ML đang được mở rộng
-* UI và Integration vẫn là trọng tâm của giai đoạn tiếp theo
+## 📂 Cấu trúc mã nguồn
+Dự án được tổ chức thành các phân phần tương ứng với các giai đoạn phân tích:
+* `(1) Classification/`: Dự đoán khả năng khách hàng rời bỏ (Churn) hoặc phân loại đơn hàng.
+* `(2) Regression/`: Dự báo giá trị thanh toán và thời gian giao hàng.
+* `(3) Clustering/`: Phân khúc khách hàng dựa trên chỉ số RFM (K-Means, GMM).
+* `(4) Recommendation/`: Hệ thống gợi ý sản phẩm sử dụng thuật toán ALS.
+* `(5) FP-Growth/`: Khai phá luật kết hợp từ giỏ hàng.
+* `Streamlit/`: Mã nguồn giao diện người dùng Web Dashboard.
 
 ---
 
-## 6. Cấu trúc project
+## 📁 Lưu trữ Mô hình (Model Storage)
+Do hạn chế về dung lượng của GitHub, các mô hình đã huấn luyện hoàn chỉnh được lưu trữ tại Google Drive.
 
-```id="x8k3lm"
-data/           # Dữ liệu Olist
-notebooks/      # EDA, Pipeline, ML models
-app/            # Streamlit (đang phát triển)
-report/         # Báo cáo
-```
+* 🔗 **Link tải Model tổng hợp:** [Click để tải về từ Google Drive](https://drive.google.com/drive/folders/1nBK4xVgsCsQteYD4_pbG0Enaiz9r65Kz)
 
 ---
 
-## 7. Công nghệ sử dụng
-
-* Python
-* PySpark
-* Spark MLlib
-* Streamlit
-* Plotly
-* GitHub
+## 🛠 Công nghệ sử dụng
+* **Ngôn ngữ:** Python 3.12.13
+* **Xử lý dữ liệu lớn:** PySpark 3.5.1 (MLlib)
+* **Giao diện:** Streamlit
+* **Trực quan hóa:** Plotly, Seaborn, Matplotlib
 
 ---
 
-## 8. Hướng dẫn chạy
-
-Hiện tại project chạy qua Notebook:
-
-```bash id="g2p9wd"
-jupyter notebook
-```
-
-(Phần Streamlit sẽ được cập nhật sau khi hoàn thiện tích hợp)
-
----
-
-## 9. Khó khăn
-
-* Tích hợp PySpark với Streamlit
-* Đồng bộ pipeline giữa các thành viên
-* Tuning model tốn thời gian
-
----
-
-##  10. Hướng phát triển
-
-* Hoàn thiện Classification & Regression
-* Tích hợp end-to-end hệ thống
-* Hoàn thiện Web UI
-* Tối ưu hiệu năng
-
----
-
-##  11. Ghi chú
-
-Dự án đang trong quá trình hoàn thiện và sẽ tiếp tục được cập nhật trong Tuần 3.
+## 📊 Kết quả đạt được
+* **Pipeline:** Tự động hóa quy trình từ dữ liệu thô (9 file CSV) đến đặc trưng vector.
+* **Hiệu năng:** GBTClassifier đạt độ chính xác cao nhất trong nhóm phân loại; K-Means tối ưu hóa phân cụm với K=4.
